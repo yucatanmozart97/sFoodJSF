@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LojaCreateDlg" widgetVar="LojaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Incluir Loja">
+            <h:form id="LojaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lojaController.selected != null}">
+                 
+                       
+                        <p:outputLabel value="Nome" for="name" />
+                        <p:inputText id="name" value="#{lojaController.selected.name}" title="Nome" required="true" requiredMessage="Nome Obrigatório"/>
+                        
+                         Tipo de produtos
+         <h:selectOneMenu id="description" value = "#{lojaController.selected.description}" required="true" requiredMessage="Selecione uma opção na combobox"> 
+             <f:selectItem itemValue = "" itemLabel = "" /> 
+            <f:selectItem itemValue = "Salgada" itemLabel = "Salgada" /> 
+            <f:selectItem itemValue = "Doce" itemLabel = "Doce" /> 
+            <f:selectItem itemValue = "Ambos" itemLabel = "Ambos" />      
+         </h:selectOneMenu>  
+ 
+                        
+                        <p:outputLabel value="Endereço" for="address" />
+                        <p:inputText id="address" value="#{lojaController.selected.address}" title="Endereço" required="true" requiredMessage="Endereço Obrigatório"/>
+                        
+                        <p:outputLabel value="Cnpj" for="cnpj" />
+                        <p:inputText id="cnpj" value="#{lojaController.selected.cnpj}" title="Cnpj" required="true" requiredMessage="Cnpj Obrigatório"/>
+                    
+                         <p:outputLabel value="Dono" for="dono" />
+                        <p:inputText id="dono" value="#{lojaController.selected.dono}" title="Dono" required="true" requiredMessage="Dono Obrigatório"/>
+                    
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lojaController.create}" value="Salvar" update="display,:LojaListForm:datalist,:growl" oncomplete="handleSubmit(args,'LojaCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="LojaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioCreateDlg" widgetVar="UsuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Incluir Loja">
+            <h:form id="UsuarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+                 
+                       
+                        <p:outputLabel value="Nome" for="name" />
+                        <p:inputText id="name" value="#{usuarioController.selected.name}" title="Nome" required="true" requiredMessage="Nome Obrigatório"/>
+                       
+                                            
+                        <p:outputLabel value="Email" for="email" />
+                        <p:inputText id="email" value="#{usuarioController.selected.email}" title="Email" required="true" requiredMessage="Email Obrigatório"/>
+                        
+                        <p:outputLabel value="Telefone" for="telefone" />
+                        <p:inputMask id="telefone" mask="(99) 99999-9999" value="#{usuarioController.selected.telefone}" title="Telefone" required="true" requiredMessage="Telefone Obrigatório"/>
+                    
+                         <p:outputLabel value="Data de Nascimento" for="dtNasc" />
+                         <p:inputMask id="dtNasc" mask="99/99/9999" value="#{usuarioController.selected.dtNascimento}" title="Data de Nascimento" required="true" requiredMessage="Data de nascimento Obrigatória"/>
+                    
+                        <p:outputLabel value="Cep" for="cep" />
+                        <p:inputMask id="cep" mask="99999-999" value="#{usuarioController.selected.cep}" title="Cep" required="true" requiredMessage="Cep Obrigatório"/>
+                    
+                        <p:outputLabel value="Complemento" for="complemento" />
+                        <p:inputText id="complemento" value="#{usuarioController.selected.complemento}" title="Complemento" required="true" requiredMessage="Complemento Obrigatório"/>
+                    
+                        <p:outputLabel value="Nome de usuario" for="usuario" />
+                        <p:inputText id="usuario" value="#{usuarioController.selected.nomeUsuario}" title="Nome de Usuario" required="true" requiredMessage="Nome de usuario Obrigatório"/>
+                        
+                        <p:outputLabel value="Senha" for="senha" />
+                        <p:inputText id="senha" value="#{usuarioController.selected.senha}" title="Senha" required="true" requiredMessage="Senha Obrigatória"/>
+                    
+                        <p:outputLabel value="Confirmar senha" for="confSenha" />
+                        <p:inputText id="confSenha" value="#{usuarioController.selected.confirmacaoSenha}" title="Confirmar senha" required="true" requiredMessage="Confirmação Obrigatória"/>
+                    
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioController.create()}" value="Salvar" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuarioCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="UsuarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
